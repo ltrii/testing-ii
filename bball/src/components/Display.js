@@ -6,8 +6,16 @@ export default class Display extends Component {
     }
   render() {
     return (
-      <div>
-          {this.props.curMsg}
+      <div className="gameDisplay">
+          <h2>
+              {this.props.curMsg}
+          </h2>
+          	<h4 data-testid="ball">
+          		Balls: {this.props.ball}
+          	</h4> 
+            <h4 data-testid="strike">
+                Strikes: {this.props.strike}
+              </h4>
       </div>
     )
   }

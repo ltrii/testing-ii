@@ -64,9 +64,10 @@ export default class MainDisplay extends Component {
     }
 
     addFoul() {
-        if(this.state.stike < 2){
+        if(this.state.strike < 2){
             this.setState({
-                strike: this.state.strike + 1
+                strike: this.state.strike + 1,
+                curMsg: 'Foul ball! Strike!'
             })
         } else {
             this.setState({
@@ -77,19 +78,25 @@ export default class MainDisplay extends Component {
     }
     handleHit() {
         this.setState({
-            curMsg: 'Home run'
+            curMsg: 'Home run',
+            strike: 0,
+            ball: 0
         })
     }
   render() {
     return (
       <div>
         <h1>Baseball</h1>
-        <Display curMsg={this.state.curMsg} />
-        <Dashboard 
-            addStrike={this.addStrike}
-            addBall={this.addBall}
-            addFoul={this.addFoul}
-            handleHit={this.handleHit} />
+        <div className="gameHold">
+            <Display curMsg={this.state.curMsg}
+                     ball={this.state.ball}
+                     strike={this.state.strike} />
+            <Dashboard 
+                addStrike={this.addStrike}
+                addBall={this.addBall}
+                addFoul={this.addFoul}
+                handleHit={this.handleHit} />
+        </div>
       </div>
     )
   }

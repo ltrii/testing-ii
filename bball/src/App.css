@@ -22,3 +22,10 @@ button:hover {
   background-color: darkred;
   color: white;
 }
+
+.gameDisplay {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
