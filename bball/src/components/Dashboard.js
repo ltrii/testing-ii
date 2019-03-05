@@ -15,6 +15,9 @@ export default class Dashboard extends Component {
       if(cur === 'foul'){
         this.props.addFoul();
       }
+      if(cur === 'hit'){
+        this.props.handleHit();
+      }
     }
 
     handleClick(e){
@@ -42,6 +45,7 @@ export default class Dashboard extends Component {
         <button data-testid="strikebtn" className="smallButton" onClick={(e => this.addNew('strike'))}>Add strike</button>
         <button data-testid="ballbtn" className="smallButton" onClick={(e => this.addNew('ball'))}>Add ball</button>
         <button data-testid="foulbtn" className="smallButton" onClick={(e => this.addNew('foul'))}>Add foul</button>
+        <button data-testid="hitbtn" className="smallButton" onClick={(e => this.addNew('hit'))}>Hit a homer</button>
       </div>
     )
   }

@@ -46,7 +46,30 @@ describe('Display for Baseball Game', () => {
         expect(strikes).toHaveTextContent("Strikes: 2");
     })
     test('Reset after strikeout', () => {
-        
+        const button = render(<MainDisplay />).getByTestId("strikebtn");
+        const display = render(<MainDisplay />);
+        fireEvent.click(button);
+        fireEvent.click(button);
+        fireEvent.click(button);
+        const strikes = display.getByTestId('strike');
+        expect(strikes).toHaveTextContent("Strikes: 0");
+    })
+    test('Walk Reset', () => {
+        const button = render(<MainDisplay />).getByTestId("ballbtn");
+        const display = render(<MainDisplay />);
+        fireEvent.click(button);
+        fireEvent.click(button);
+        fireEvent.click(button);
+        fireEvent.click(button);
+        const balls = display.getByTestId('ball');
+        expect(balls).toHaveTextContent("Balls: 0");
+    })
+    test('Reset after hit', () => {
+        const button = render(<MainDisplay />).getByTestId("hitbtn");
+        const display = render(<MainDisplay strike={1} />);
+        fireEvent.click(button);
+        const strikes = display.getByTestId('strike');
+        expect(strikes).toHaveTextContent("Strikes: 0");
     })
 })
 

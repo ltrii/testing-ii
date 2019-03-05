@@ -29,3 +29,8 @@ button:hover {
   justify-content: center;
   align-items: center;
 }
+
+.smallButton {
+  font-size: .95em;
+  margin: 10px;
+}
