@@ -54,7 +54,8 @@ export default class MainDisplay extends Component {
             prevMsg: this.state.curMsg,
             curMsg: 'Walk! (but really just an out)',
             strike: 0,
-            ball: 0
+            ball: 0,
+            outs: this.state.outs + 1
             })
         }
         if(this.state.foul){
