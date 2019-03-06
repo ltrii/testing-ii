@@ -28,9 +28,22 @@ button:hover {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  height: 500px;
 }
 
 .smallButton {
   font-size: .95em;
   margin: 10px;
+}
+
+.messages {
+  font-size: 3em;
+  display: flex;
+  width: 100%;
+}
+
+.prev {
+  font-size: 24px;
+  width: 45%;
+  color: lightslategray;
 }

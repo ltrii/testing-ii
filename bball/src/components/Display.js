@@ -7,9 +7,11 @@ export default class Display extends Component {
   render() {
     return (
       <div className="gameDisplay">
-          <h2>
-              {this.props.curMsg}
-          </h2>
+          <div className="messages"><h2 className="prev">{this.props.prevMsg}</h2>
+            <h2>
+                {this.props.curMsg}
+            </h2>
+          </div>
           	<h4 data-testid="ball">
           		Balls: {this.props.ball}
           	</h4> 

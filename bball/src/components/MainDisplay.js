@@ -12,7 +12,8 @@ export default class MainDisplay extends Component {
             foul: false,
             out: false,
             hit: false,
-            curMsg: 'Click to begin'
+            curMsg: 'Click to begin',
+            prevMsg: ''
         }
         this.addBall = this.addBall.bind(this);
         this.addStrike = this.addStrike.bind(this);
@@ -28,6 +29,7 @@ export default class MainDisplay extends Component {
         }
         if(this.state.out){
             this.setState({
+                prevMsg: this.state.curMsg,
                 curMsg: 'you are out',
                 strike: 0,
                 ball: 0,
@@ -36,6 +38,7 @@ export default class MainDisplay extends Component {
         }
         if(this.state.ball > 3){
             this.setState({
+            prevMsg: this.state.curMsg,
             curMsg: 'Walk! Pretty much an out in this game',
             strike: 0,
             ball: 0
@@ -43,6 +46,7 @@ export default class MainDisplay extends Component {
         }
         if(this.state.foul){
             this.setState({
+                prevMsg: this.state.curMsg,
                 curMsg: 'Foul ball',
                 foul: false
             })
@@ -51,6 +55,7 @@ export default class MainDisplay extends Component {
 
     addStrike() {
         this.setState({
+            prevMsg: this.state.curMsg,
             curMsg: 'Strike',
             strike: this.state.strike + 1
         })
@@ -58,6 +63,7 @@ export default class MainDisplay extends Component {
 
     addBall() {
         this.setState({
+            prevMsg: this.state.curMsg,
             curMsg: 'Ball',
             ball: this.state.ball + 1
         })
@@ -66,6 +72,7 @@ export default class MainDisplay extends Component {
     addFoul() {
         if(this.state.strike < 2){
             this.setState({
+                prevMsg: this.state.curMsg,
                 strike: this.state.strike + 1,
                 curMsg: 'Foul ball! Strike!'
             })
@@ -78,6 +85,7 @@ export default class MainDisplay extends Component {
     }
     handleHit() {
         this.setState({
+            prevMsg: this.state.curMsg,
             curMsg: 'Home run',
             strike: 0,
             ball: 0
@@ -90,7 +98,8 @@ export default class MainDisplay extends Component {
         <div className="gameHold">
             <Display curMsg={this.state.curMsg}
                      ball={this.state.ball}
-                     strike={this.state.strike} />
+                     strike={this.state.strike}
+                     prevMsg={this.state.prevMsg} />
             <Dashboard 
                 addStrike={this.addStrike}
                 addBall={this.addBall}
