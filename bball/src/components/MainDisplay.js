@@ -79,11 +79,13 @@ export default class MainDisplay extends Component {
                 this.setState({
                     extraInit: true,
                     extraInnings: true
-                }) } else if (this.state.homeScore !== this.state.awayScore && this.state.inHalf === 'home'){
+                }) } else if (this.state.homeScore !== this.state.awayScore && this.state.extraInit === true && this.state.inHalf === 'home'){
                     this.setState({
                         curMsg: 'Game over!',
                         inning: 1,
-                        extraInnings: null
+                        awayScore: 0,
+                        homeScore: 0,
+                        extraInit: false
                     })
                 }
             }

@@ -71,5 +71,10 @@ describe('Display for Baseball Game', () => {
         const strikes = display.getByTestId('strike');
         expect(strikes).toHaveTextContent("Strikes: 0");
     })
+    // test('Extra innings', () => {
+    //     const display = render(<MainDisplay inning={10} />);
+    //     const strikes = display.getByTestId('strike');
+    //     expect(strikes).toHaveTextContent("Strikes: 0");
+    // })
 })
 
