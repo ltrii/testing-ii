@@ -16,10 +16,13 @@ export default class MainDisplay extends Component {
             hit: false,
             inning: 1,
             inHalf: 'away',
-            curMsg: 'Click to begin',
+            curMsg: 'Click button below',
             prevMsg: '',
             awayScore: 0,
             homeScore: 0,
+            b1: 0,
+            b2: 0,
+            b3: 0,
             extraInnings: null,
             extraInit: false,
             winLog: [{
@@ -69,13 +72,21 @@ export default class MainDisplay extends Component {
             if(this.state.inHalf === 'away') {
                 this.setState({
                     inHalf: 'home',
-                    outs: 0
+                    outs: 0,
+                    b1: 0,
+                    b2: 0,
+                    b3: 0,
+                    curMsg: 'Home up'
                  })
           } else if (this.state.inHalf === 'home') {
              this.setState({
                  inHalf: 'away',
                  inning: this.state.inning + 1,
-                 outs: 0
+                 outs: 0,
+                 b1: 0,
+                 b2: 0,
+                 b3: 0,
+                 curMsg: 'Away up'
                   })
          }
         }
@@ -87,7 +98,7 @@ export default class MainDisplay extends Component {
                         winLog: [...this.state.winLog, ({
                             Away: this.state.awayScore,
                             Home: this.state.homeScore,
-                            Innings: this.state.inning
+                            Innings: 9
                         })],
                         curMsg: 'Game Over! Home Team Wins!',
                         inning: 1,
@@ -101,7 +112,7 @@ export default class MainDisplay extends Component {
                         winLog: [...this.state.winLog, ({
                             Away: this.state.awayScore,
                             Home: this.state.homeScore,
-                            Innings: this.state.inning
+                            Innings: 9
                         })],
                         curMsg: 'Game Over! Away Team Wins!',
                         inning: 1,
@@ -181,24 +192,492 @@ export default class MainDisplay extends Component {
         }
 
     }
-    handleHit() {
+    handleHit(type) {
         if(this.state.inHalf === 'away'){
-            this.setState({
-                prevMsg: this.state.curMsg,
-                curMsg: 'Home run',
-                strike: 0,
-                ball: 0,
-                awayScore: this.state.awayScore + 1
-            })
+            if(type === 'single'){
+                if(this.state.b1 === 0 && this.state.b2 === 0 && this.state.b3 === 0){
+                    this.setState({
+                        b1: 1,
+                        b2: 0,
+                        b3: 0,
+                        curMsg: 'Single hit'
+                    });
+                }
+                else if(this.state.b1 === 1 && this.state.b2 === 0 && this.state.b3 === 0){
+                    this.setState({
+                        b1: 1,
+                        b2: 1,
+                        b3: 0,
+                        curMsg: 'Single hit'
+                    });
+                } 
+                else if(this.state.b1 === 1 && this.state.b2 === 1 && this.state.b3 === 0){
+                    this.setState({
+                        b1: 1,
+                        b2: 1,
+                        b3: 1,
+                        curMsg: 'Single hit'
+                    });
+                }
+                else if(this.state.b1 === 1 && this.state.b2 === 1 && this.state.b3 === 1){
+                    this.setState({
+                        b1: 1,
+                        b2: 1,
+                        b3: 1,
+                        prevMsg: this.state.curMsg,
+                        curMsg: 'Single Run',
+                        strike: 0,
+                        ball: 0,
+                        awayScore: this.state.awayScore + 1
+                    });
+                } 
+                else if(this.state.b1 === 0 && this.state.b2 === 1 && this.state.b3 === 1){
+                    this.setState({
+                        b1: 1,
+                        b2: 0,
+                        b3: 1,
+                        prevMsg: this.state.curMsg,
+                        curMsg: 'Single Run',
+                        strike: 0,
+                        ball: 0,
+                        awayScore: this.state.awayScore + 1
+                    });
+                } 
+                else if(this.state.b1 === 0 && this.state.b2 === 0 && this.state.b3 === 1){
+                    this.setState({
+                        b1: 1,
+                        b2: 0,
+                        b3: 0,
+                        prevMsg: this.state.curMsg,
+                        curMsg: 'Single Run',
+                        strike: 0,
+                        ball: 0,
+                        awayScore: this.state.awayScore + 1
+                    });
+                } 
+                else if(this.state.b1 === 1 && this.state.b2 === 0 && this.state.b3 === 1){
+                    this.setState({
+                        b1: 1,
+                        b2: 1,
+                        b3: 0,
+                        prevMsg: this.state.curMsg,
+                        curMsg: 'Single Run',
+                        strike: 0,
+                        ball: 0,
+                        awayScore: this.state.awayScore + 1
+                    });
+                } 
+            } else if (type === 'double') {
+                if(this.state.b1 === 0 && this.state.b2 === 0 && this.state.b3 === 0){
+                    this.setState({
+                        b1: 0,
+                        b2: 1,
+                        b3: 0,
+                        curMsg: 'Double hit'
+                    });
+                }
+                else if(this.state.b1 === 1 && this.state.b2 === 0 && this.state.b3 === 0){
+                    this.setState({
+                        b1: 0,
+                        b2: 1,
+                        b3: 1,
+                        curMsg: 'Double hit'
+                    });
+                } 
+                else if(this.state.b1 === 1 && this.state.b2 === 1 && this.state.b3 === 0){
+                    this.setState({
+                        b1: 0,
+                        b2: 1,
+                        b3: 1,
+                        prevMsg: this.state.curMsg,
+                        curMsg: 'Double - 1 Run',
+                        strike: 0,
+                        ball: 0,
+                        awayScore: this.state.awayScore + 1
+                    });
+                }
+                else if(this.state.b1 === 1 && this.state.b2 === 1 && this.state.b3 === 1){
+                    this.setState({
+                        b1: 0,
+                        b2: 1,
+                        b3: 1,
+                        prevMsg: this.state.curMsg,
+                        curMsg: 'Double - 2 Runs',
+                        strike: 0,
+                        ball: 0,
+                        awayScore: this.state.awayScore + 2
+                    });
+                } 
+                else if(this.state.b1 === 0 && this.state.b2 === 1 && this.state.b3 === 1){
+                    this.setState({
+                        b1: 0,
+                        b2: 1,
+                        b3: 0,
+                        prevMsg: this.state.curMsg,
+                        curMsg: 'Double - 2 Runs',
+                        strike: 0,
+                        ball: 0,
+                        awayScore: this.state.awayScore + 2
+                    });
+                } 
+                else if(this.state.b1 === 0 && this.state.b2 === 0 && this.state.b3 === 1){
+                    this.setState({
+                        b1: 0,
+                        b2: 1,
+                        b3: 0,
+                        prevMsg: this.state.curMsg,
+                        curMsg: 'Double - 1 Run',
+                        strike: 0,
+                        ball: 0,
+                        awayScore: this.state.awayScore + 1
+                    });
+                } 
+                else if(this.state.b1 === 1 && this.state.b2 === 0 && this.state.b3 === 1){
+                    this.setState({
+                        b1: 0,
+                        b2: 1,
+                        b3: 1,
+                        prevMsg: this.state.curMsg,
+                        curMsg: 'Double - 1 Run',
+                        strike: 0,
+                        ball: 0,
+                        awayScore: this.state.awayScore + 1
+                    });
+                } 
+            } else if (type === 'triple') {
+                if(this.state.b1 === 0 && this.state.b2 === 0 && this.state.b3 === 0){
+                    this.setState({
+                        b1: 0,
+                        b2: 0,
+                        b3: 1,
+                        curMsg: 'Triple hit'
+                    });
+                }
+                else if(this.state.b1 === 1 && this.state.b2 === 0 && this.state.b3 === 0){
+                    this.setState({
+                        b1: 0,
+                        b2: 0,
+                        b3: 1,
+                        prevMsg: this.state.curMsg,
+                        curMsg: 'Triple - 1 Run',
+                        strike: 0,
+                        ball: 0,
+                        awayScore: this.state.awayScore + 1
+                    });
+                } 
+                else if(this.state.b1 === 1 && this.state.b2 === 1 && this.state.b3 === 0){
+                    this.setState({
+                        b1: 0,
+                        b2: 0,
+                        b3: 1,
+                        prevMsg: this.state.curMsg,
+                        curMsg: 'Triple - 2 Run',
+                        strike: 0,
+                        ball: 0,
+                        awayScore: this.state.awayScore + 2
+                    });
+                }
+                else if(this.state.b1 === 1 && this.state.b2 === 1 && this.state.b3 === 1){
+                    this.setState({
+                        b1: 0,
+                        b2: 0,
+                        b3: 1,
+                        prevMsg: this.state.curMsg,
+                        curMsg: 'Triple - 3 Runs!',
+                        strike: 0,
+                        ball: 0,
+                        awayScore: this.state.awayScore + 3
+                    });
+                } 
+                else if(this.state.b1 === 0 && this.state.b2 === 1 && this.state.b3 === 1){
+                    this.setState({
+                        b1: 0,
+                        b2: 0,
+                        b3: 1,
+                        prevMsg: this.state.curMsg,
+                        curMsg: 'Triple - 2 Run',
+                        strike: 0,
+                        ball: 0,
+                        awayScore: this.state.awayScore + 2
+                    });
+                } 
+                else if(this.state.b1 === 0 && this.state.b2 === 0 && this.state.b3 === 1){
+                    this.setState({
+                        b1: 0,
+                        b2: 0,
+                        b3: 1,
+                        prevMsg: this.state.curMsg,
+                        curMsg: 'Triple - 1 Run',
+                        strike: 0,
+                        ball: 0,
+                        awayScore: this.state.awayScore + 1
+                    });
+                } 
+                else if(this.state.b1 === 1 && this.state.b2 === 0 && this.state.b3 === 1){
+                    this.setState({
+                        b1: 0,
+                        b2: 0,
+                        b3: 1,
+                        prevMsg: this.state.curMsg,
+                        curMsg: 'Triple - 2 Run',
+                        strike: 0,
+                        ball: 0,
+                        awayScore: this.state.awayScore + 2
+                    });
+                } 
+            } else if (type === 'homerun') {
+                const runsIn = this.state.b1 + this.state.b2 + this.state.b3 + 1;
+                this.setState({
+                    prevMsg: this.state.curMsg,
+                    curMsg: `Home Run! ${runsIn} runs!`,
+                    strike: 0,
+                    ball: 0,
+                    awayScore: this.state.awayScore + runsIn
+                })
+            }
         }
         else if (this.state.inHalf === 'home'){
-            this.setState({
-                prevMsg: this.state.curMsg,
-                curMsg: 'Home run',
-                strike: 0,
-                ball: 0,
-                homeScore: this.state.homeScore + 1
-            })
+            if(type === 'single'){
+                if(this.state.b1 === 0 && this.state.b2 === 0 && this.state.b3 === 0){
+                    this.setState({
+                        b1: 1,
+                        b2: 0,
+                        b3: 0,
+                        curMsg: 'Single hit'
+                    });
+                }
+                else if(this.state.b1 === 1 && this.state.b2 === 0 && this.state.b3 === 0){
+                    this.setState({
+                        b1: 1,
+                        b2: 1,
+                        b3: 0,
+                        curMsg: 'Single hit'
+                    });
+                } 
+                else if(this.state.b1 === 1 && this.state.b2 === 1 && this.state.b3 === 0){
+                    this.setState({
+                        b1: 1,
+                        b2: 1,
+                        b3: 1,
+                        curMsg: 'Single hit'
+                    });
+                }
+                else if(this.state.b1 === 1 && this.state.b2 === 1 && this.state.b3 === 1){
+                    this.setState({
+                        b1: 1,
+                        b2: 1,
+                        b3: 1,
+                        prevMsg: this.state.curMsg,
+                        curMsg: 'Single Run',
+                        strike: 0,
+                        ball: 0,
+                        homeScore: this.state.homeScore + 1
+                    });
+                } 
+                else if(this.state.b1 === 0 && this.state.b2 === 1 && this.state.b3 === 1){
+                    this.setState({
+                        b1: 1,
+                        b2: 0,
+                        b3: 1,
+                        prevMsg: this.state.curMsg,
+                        curMsg: 'Single Run',
+                        strike: 0,
+                        ball: 0,
+                        homeScore: this.state.homeScore + 1
+                    });
+                } 
+                else if(this.state.b1 === 0 && this.state.b2 === 0 && this.state.b3 === 1){
+                    this.setState({
+                        b1: 1,
+                        b2: 0,
+                        b3: 0,
+                        prevMsg: this.state.curMsg,
+                        curMsg: 'Single Run',
+                        strike: 0,
+                        ball: 0,
+                        homeScore: this.state.homeScore + 1
+                    });
+                } 
+                else if(this.state.b1 === 1 && this.state.b2 === 0 && this.state.b3 === 1){
+                    this.setState({
+                        b1: 1,
+                        b2: 1,
+                        b3: 0,
+                        prevMsg: this.state.curMsg,
+                        curMsg: 'Single Run',
+                        strike: 0,
+                        ball: 0,
+                        homeScore: this.state.homeScore + 1
+                    });
+                } 
+            } else if (type === 'double') {
+                if(this.state.b1 === 0 && this.state.b2 === 0 && this.state.b3 === 0){
+                    this.setState({
+                        b1: 0,
+                        b2: 1,
+                        b3: 0,
+                        curMsg: 'Double hit'
+                    });
+                }
+                else if(this.state.b1 === 1 && this.state.b2 === 0 && this.state.b3 === 0){
+                    this.setState({
+                        b1: 0,
+                        b2: 1,
+                        b3: 1,
+                        curMsg: 'Double hit'
+                    });
+                } 
+                else if(this.state.b1 === 1 && this.state.b2 === 1 && this.state.b3 === 0){
+                    this.setState({
+                        b1: 0,
+                        b2: 1,
+                        b3: 1,
+                        prevMsg: this.state.curMsg,
+                        curMsg: 'Double - 1 Run',
+                        strike: 0,
+                        ball: 0,
+                        homeScore: this.state.homeScore + 1
+                    });
+                }
+                else if(this.state.b1 === 1 && this.state.b2 === 1 && this.state.b3 === 1){
+                    this.setState({
+                        b1: 0,
+                        b2: 1,
+                        b3: 1,
+                        prevMsg: this.state.curMsg,
+                        curMsg: 'Double - 2 Runs',
+                        strike: 0,
+                        ball: 0,
+                        homeScore: this.state.homeScore + 2
+                    });
+                } 
+                else if(this.state.b1 === 0 && this.state.b2 === 1 && this.state.b3 === 1){
+                    this.setState({
+                        b1: 0,
+                        b2: 1,
+                        b3: 0,
+                        prevMsg: this.state.curMsg,
+                        curMsg: 'Double - 2 Runs',
+                        strike: 0,
+                        ball: 0,
+                        homeScore: this.state.homeScore + 2
+                    });
+                } 
+                else if(this.state.b1 === 0 && this.state.b2 === 0 && this.state.b3 === 1){
+                    this.setState({
+                        b1: 0,
+                        b2: 1,
+                        b3: 0,
+                        prevMsg: this.state.curMsg,
+                        curMsg: 'Double - 1 Run',
+                        strike: 0,
+                        ball: 0,
+                        homeScore: this.state.homeScore + 1
+                    });
+                } 
+                else if(this.state.b1 === 1 && this.state.b2 === 0 && this.state.b3 === 1){
+                    this.setState({
+                        b1: 0,
+                        b2: 1,
+                        b3: 1,
+                        prevMsg: this.state.curMsg,
+                        curMsg: 'Double - 1 Run',
+                        strike: 0,
+                        ball: 0,
+                        homeScore: this.state.homeScore + 1
+                    });
+                } 
+            } else if (type === 'triple') {
+                if(this.state.b1 === 0 && this.state.b2 === 0 && this.state.b3 === 0){
+                    this.setState({
+                        b1: 0,
+                        b2: 0,
+                        b3: 1,
+                        curMsg: 'Triple hit'
+                    });
+                }
+                else if(this.state.b1 === 1 && this.state.b2 === 0 && this.state.b3 === 0){
+                    this.setState({
+                        b1: 0,
+                        b2: 0,
+                        b3: 1,
+                        prevMsg: this.state.curMsg,
+                        curMsg: 'Triple - 1 Run',
+                        strike: 0,
+                        ball: 0,
+                        homeScore: this.state.homeScore + 1
+                    });
+                } 
+                else if(this.state.b1 === 1 && this.state.b2 === 1 && this.state.b3 === 0){
+                    this.setState({
+                        b1: 0,
+                        b2: 0,
+                        b3: 1,
+                        prevMsg: this.state.curMsg,
+                        curMsg: 'Triple - 2 Run',
+                        strike: 0,
+                        ball: 0,
+                        homeScore: this.state.homeScore + 2
+                    });
+                }
+                else if(this.state.b1 === 1 && this.state.b2 === 1 && this.state.b3 === 1){
+                    this.setState({
+                        b1: 0,
+                        b2: 0,
+                        b3: 1,
+                        prevMsg: this.state.curMsg,
+                        curMsg: 'Triple - 3 Runs!',
+                        strike: 0,
+                        ball: 0,
+                        homeScore: this.state.homeScore + 3
+                    });
+                } 
+                else if(this.state.b1 === 0 && this.state.b2 === 1 && this.state.b3 === 1){
+                    this.setState({
+                        b1: 0,
+                        b2: 0,
+                        b3: 1,
+                        prevMsg: this.state.curMsg,
+                        curMsg: 'Triple - 2 Run',
+                        strike: 0,
+                        ball: 0,
+                        homeScore: this.state.homeScore + 2
+                    });
+                } 
+                else if(this.state.b1 === 0 && this.state.b2 === 0 && this.state.b3 === 1){
+                    this.setState({
+                        b1: 0,
+                        b2: 0,
+                        b3: 1,
+                        prevMsg: this.state.curMsg,
+                        curMsg: 'Triple - 1 Run',
+                        strike: 0,
+                        ball: 0,
+                        homeScore: this.state.homeScore + 1
+                    });
+                } 
+                else if(this.state.b1 === 1 && this.state.b2 === 0 && this.state.b3 === 1){
+                    this.setState({
+                        b1: 0,
+                        b2: 0,
+                        b3: 1,
+                        prevMsg: this.state.curMsg,
+                        curMsg: 'Triple - 2 Run',
+                        strike: 0,
+                        ball: 0,
+                        homeScore: this.state.homeScore + 2
+                    });
+                } 
+            } else if (type === 'homerun') {
+                const runsIn = this.state.b1 + this.state.b2 + this.state.b3 + 1;
+                this.setState({
+                    prevMsg: this.state.curMsg,
+                    curMsg: `Home Run! ${runsIn} runs!`,
+                    strike: 0,
+                    ball: 0,
+                    homeScore: this.state.homeScore + runsIn
+                })
+            }
         }
     }
   render() {

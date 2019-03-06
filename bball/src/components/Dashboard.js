@@ -13,26 +13,33 @@ export default class Dashboard extends Component {
         this.props.addFoul();
       }
       if(cur === 'hit'){
-        this.props.handleHit();
+        this.props.handleHit('homerun');
       }
     }
 
     handleClick(e){
       e.preventDefault();
       const diceRoll = Math.floor((Math.random() * 100) + 1);
-      if(diceRoll <= 5){
-          this.props.handleHit();
+      if(diceRoll <= 2){
+          this.props.handleHit('homerun');
       }
-      else if(diceRoll <= 20){
+      else if(diceRoll <= 10){
           this.props.addFoul();
       }
       else if(diceRoll <= 53){
           this.props.addStrike();
       }
-      else if(diceRoll <= 86){
+      else if(diceRoll <= 76){
           this.props.addBall();
-      } else if(diceRoll <= 100){
-          this.props.addStrike();
+      } 
+      else if(diceRoll <= 88){
+          this.props.handleHit('single');
+      }
+      else if(diceRoll <= 95){
+          this.props.handleHit('double');
+      }
+      else if(diceRoll <= 100){
+          this.props.handleHit('triple');
       }
   }
   render() {

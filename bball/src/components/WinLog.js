@@ -13,7 +13,6 @@ export default function WinLog(props) {
               <h4>
                   Away Score: {game.Away}
               </h4>
-                  Innings: {game.Innings}
           </div>
       ))}
       </div>
