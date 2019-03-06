@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Display from './Display';
 import Dashboard from './Dashboard';
+import WinLog from './WinLog';
 
 
 export default class MainDisplay extends Component {
@@ -81,15 +82,12 @@ export default class MainDisplay extends Component {
         if(this.state.inning >= 10){
             if(this.state.homeScore !== this.state.awayScore && this.state.extraInit !== true) {
                 if(this.state.homeScore > this.state.awayScore){
-                    var curWinLog = this.state.winLog;
-                    console.log(curWinLog);
-                    var updWinLog = curWinLog.unshift({
-                        Away: this.state.awayScore,
-                        Home: this.state.homeScore,
-                        Innings: this.state.inning
-                    })
                     this.setState({
-                        winLog: updWinLog,
+                        winLog: [...this.state.winLog, ({
+                            Away: this.state.awayScore,
+                            Home: this.state.homeScore,
+                            Innings: this.state.inning
+                        })],
                         curMsg: 'Game Over! Home Team Wins!',
                         inning: 1,
                         awayScore: 0,
@@ -98,15 +96,12 @@ export default class MainDisplay extends Component {
                         extraInit: false
                     })
                 } else if(this.state.homeScore < this.state.awayScore){
-                    var curWinLog = this.state.winLog;
-                    console.log(curWinLog);
-                    var updWinLog = curWinLog.unshift({
-                        Away: this.state.awayScore,
-                        Home: this.state.homeScore,
-                        Innings: this.state.inning
-                    })
                     this.setState({
-                        winLog: updWinLog,
+                        winLog: [...this.state.winLog, ({
+                            Away: this.state.awayScore,
+                            Home: this.state.homeScore,
+                            Innings: this.state.inning
+                        })],
                         curMsg: 'Game Over! Away Team Wins!',
                         inning: 1,
                         awayScore: 0,
@@ -122,15 +117,12 @@ export default class MainDisplay extends Component {
                     extraInnings: true
                 }) } else if (this.state.homeScore !== this.state.awayScore && this.state.extraInit === true && this.state.inHalf === 'home'){
                     if(this.state.homeScore > this.state.awayScore){
-                        var curWinLog = this.state.winLog;
-                        console.log(curWinLog);
-                        var updWinLog = curWinLog.unshift({
-                            Away: this.state.awayScore,
-                            Home: this.state.homeScore,
-                            Innings: this.state.inning
-                        })
                         this.setState({
-                            winLog: updWinLog,
+                            winLog: [...this.state.winLog, ({
+                                Away: this.state.awayScore,
+                                Home: this.state.homeScore,
+                                Innings: this.state.inning
+                            })],
                             curMsg: 'Game Over! Home Team Wins!',
                             inning: 1,
                             awayScore: 0,
@@ -139,15 +131,12 @@ export default class MainDisplay extends Component {
                             extraInit: false
                         })
                     } else if(this.state.homeScore < this.state.awayScore){
-                        var curWinLog = this.state.winLog;
-                        console.log(curWinLog);
-                        var updWinLog = curWinLog.unshift({
-                            Away: this.state.awayScore,
-                            Home: this.state.homeScore,
-                            Innings: this.state.inning
-                        })
                         this.setState({
-                            winLog: updWinLog,
+                            winLog: [...this.state.winLog, ({
+                                Away: this.state.awayScore,
+                                Home: this.state.homeScore,
+                                Innings: this.state.inning
+                            })],
                             curMsg: 'Game Over! Away Team Wins!',
                             inning: 1,
                             awayScore: 0,
@@ -230,6 +219,8 @@ export default class MainDisplay extends Component {
                 addBall={this.addBall}
                 addFoul={this.addFoul}
                 handleHit={this.handleHit} />
+
+            <WinLog winLog={this.state.winLog} />
 
         </div>
       </div>
