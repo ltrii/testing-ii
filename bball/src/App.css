@@ -80,3 +80,30 @@ button:hover {
 .winLogEntry h4 {
   line-height: 0;
 }
+
+@media(max-width: 600px){
+  body {
+    width: 100%;
+  }
+  h1 {
+    font-size: 3.15em;
+    line-height: 5px;
+  }
+  .messages h2 {
+    font-size: 2.75em;
+    line-height: 0;
+  }
+  .interact {
+    flex-direction: column;
+  }
+  .winLogHold {
+    width: 100%;
+    flex-direction: column;
+  }
+  
+  .winLogEntry {
+    width: 90%;
+    margin: 5px auto;
+    padding: 5px;
+  }
+}

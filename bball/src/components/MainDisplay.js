@@ -52,7 +52,7 @@ export default class MainDisplay extends Component {
         if(this.state.ball > 3){
             this.setState({
             prevMsg: this.state.curMsg,
-            curMsg: 'Walk! (but really just an out)',
+            curMsg: 'Walk! (currently out)',
             strike: 0,
             ball: 0,
             outs: this.state.outs + 1
