@@ -95,6 +95,16 @@ export default class MainDisplay extends Component {
                         b2: 1,
                         b3: 1
                     })
+                } else {
+                    this.setState({
+                        prevMsg: this.state.curMsg,
+                        curMsg: 'Walk!',
+                        strike: 0,
+                        ball: 0,
+                        b1: 1,
+                        b2: 0,
+                        b3: 0
+                    })
                 }
             } else if (this.state.inHalf === 'home') {
                 if(this.state.b1 === 1 && this.state.b2 === 0 && this.state.b3 === 0) {
@@ -137,6 +147,16 @@ export default class MainDisplay extends Component {
                         b1: 1,
                         b2: 1,
                         b3: 1
+                    })
+                } else {
+                    this.setState({
+                        prevMsg: this.state.curMsg,
+                        curMsg: 'Walk!',
+                        strike: 0,
+                        ball: 0,
+                        b1: 1,
+                        b2: 0,
+                        b3: 0
                     })
                 }
             }
@@ -280,7 +300,9 @@ export default class MainDisplay extends Component {
                         b1: 1,
                         b2: 0,
                         b3: 0,
-                        curMsg: 'Single hit'
+                        curMsg: 'Single hit',
+                        ball: 0,
+                        strike: 0
                     });
                 }
                 else if(this.state.b1 === 1 && this.state.b2 === 0 && this.state.b3 === 0){
@@ -288,7 +310,9 @@ export default class MainDisplay extends Component {
                         b1: 1,
                         b2: 1,
                         b3: 0,
-                        curMsg: 'Single hit'
+                        curMsg: 'Single hit',
+                        ball: 0,
+                        strike: 0
                     });
                 } 
                 else if(this.state.b1 === 1 && this.state.b2 === 1 && this.state.b3 === 0){
@@ -296,7 +320,9 @@ export default class MainDisplay extends Component {
                         b1: 1,
                         b2: 1,
                         b3: 1,
-                        curMsg: 'Single hit'
+                        curMsg: 'Single hit',
+                        ball: 0,
+                        strike: 0
                     });
                 }
                 else if(this.state.b1 === 1 && this.state.b2 === 1 && this.state.b3 === 1){
@@ -353,6 +379,8 @@ export default class MainDisplay extends Component {
                         b1: 0,
                         b2: 1,
                         b3: 0,
+                        ball: 0,
+                        strike: 0,
                         curMsg: 'Double hit'
                     });
                 }
@@ -361,7 +389,9 @@ export default class MainDisplay extends Component {
                         b1: 0,
                         b2: 1,
                         b3: 1,
-                        curMsg: 'Double hit'
+                        curMsg: 'Double hit',
+                        ball: 0,
+                        strike: 0
                     });
                 } 
                 else if(this.state.b1 === 1 && this.state.b2 === 1 && this.state.b3 === 0){
@@ -430,7 +460,9 @@ export default class MainDisplay extends Component {
                         b1: 0,
                         b2: 0,
                         b3: 1,
-                        curMsg: 'Triple hit'
+                        curMsg: 'Triple hit',
+                        ball: 0,
+                        strike: 0
                     });
                 }
                 else if(this.state.b1 === 1 && this.state.b2 === 0 && this.state.b3 === 0){
@@ -526,7 +558,9 @@ export default class MainDisplay extends Component {
                         b1: 1,
                         b2: 0,
                         b3: 0,
-                        curMsg: 'Single hit'
+                        curMsg: 'Single hit',
+                        ball: 0,
+                        strike: 0
                     });
                 }
                 else if(this.state.b1 === 1 && this.state.b2 === 0 && this.state.b3 === 0){
@@ -534,7 +568,9 @@ export default class MainDisplay extends Component {
                         b1: 1,
                         b2: 1,
                         b3: 0,
-                        curMsg: 'Single hit'
+                        curMsg: 'Single hit',
+                        ball: 0,
+                        strike: 0
                     });
                 } 
                 else if(this.state.b1 === 1 && this.state.b2 === 1 && this.state.b3 === 0){
@@ -542,7 +578,9 @@ export default class MainDisplay extends Component {
                         b1: 1,
                         b2: 1,
                         b3: 1,
-                        curMsg: 'Single hit'
+                        curMsg: 'Single hit',
+                        ball: 0,
+                        strike: 0
                     });
                 }
                 else if(this.state.b1 === 1 && this.state.b2 === 1 && this.state.b3 === 1){
@@ -599,7 +637,9 @@ export default class MainDisplay extends Component {
                         b1: 0,
                         b2: 1,
                         b3: 0,
-                        curMsg: 'Double hit'
+                        curMsg: 'Double hit',
+                        ball: 0,
+                        strike: 0
                     });
                 }
                 else if(this.state.b1 === 1 && this.state.b2 === 0 && this.state.b3 === 0){
@@ -607,7 +647,9 @@ export default class MainDisplay extends Component {
                         b1: 0,
                         b2: 1,
                         b3: 1,
-                        curMsg: 'Double hit'
+                        curMsg: 'Double hit',
+                        ball: 0,
+                        strike: 0
                     });
                 } 
                 else if(this.state.b1 === 1 && this.state.b2 === 1 && this.state.b3 === 0){
@@ -676,7 +718,9 @@ export default class MainDisplay extends Component {
                         b1: 0,
                         b2: 0,
                         b3: 1,
-                        curMsg: 'Triple hit'
+                        curMsg: 'Triple hit',
+                        ball: 0,
+                        strike: 0
                     });
                 }
                 else if(this.state.b1 === 1 && this.state.b2 === 0 && this.state.b3 === 0){
