@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Display from './Display';
 import Dashboard from './Dashboard';
 import WinLog from './WinLog';
+import Bases from './Bases';
 
 
 export default class MainDisplay extends Component {
@@ -849,6 +850,9 @@ export default class MainDisplay extends Component {
                      inning={this.state.inning}
                      outs={this.state.outs}
                      inHalf={this.state.inHalf} />
+                <Bases b1={this.state.b1}
+                   b2={this.state.b2}
+                   b3={this.state.b3} />
             <Dashboard 
                 addStrike={this.addStrike}
                 addBall={this.addBall}

@@ -19,26 +19,26 @@ export default class Dashboard extends Component {
 
     handleClick(e){
       e.preventDefault();
-      const diceRoll = Math.floor((Math.random() * 100) + 1);
-      if(diceRoll <= 2){
+      const diceRoll = Math.floor((Math.random() * 1000) + 1);
+      if(diceRoll <= 5){
           this.props.handleHit('homerun');
       }
-      else if(diceRoll <= 10){
+      else if(diceRoll <= 45){
           this.props.addFoul();
       }
-      else if(diceRoll <= 53){
+      else if(diceRoll <= 750){
           this.props.addStrike();
       }
-      else if(diceRoll <= 76){
+      else if(diceRoll <= 910){
           this.props.addBall();
       } 
-      else if(diceRoll <= 88){
+      else if(diceRoll <= 970){
           this.props.handleHit('single');
       }
-      else if(diceRoll <= 95){
+      else if(diceRoll <= 990){
           this.props.handleHit('double');
       }
-      else if(diceRoll <= 100){
+      else if(diceRoll <= 1000){
           this.props.handleHit('triple');
       }
   }

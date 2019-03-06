@@ -54,12 +54,13 @@ button:hover {
 .messages h2 {
   color: rgb(23, 0, 128);
   font-size: 4.75em;
-  line-height: 0;
+  height: 75px;
 }
 
 .prev {
   font-size: 20px;
   color: lightslategray;
+  height: 35px;
 }
 
 .winLogHold {
@@ -74,13 +75,37 @@ button:hover {
   flex-wrap: wrap;
   width: 20%;
   border: 1px solid black;
-  border-radius: 3px;
+  border-radius: 4px;
   margin: 10px;
   padding: 10px;
+  -webkit-box-shadow: 10px 10px 31px -28px rgba(0,0,0,0.75);
+  -moz-box-shadow: 10px 10px 31px -28px rgba(0,0,0,0.75);
+  box-shadow: 10px 10px 31px -28px rgba(0,0,0,0.75);
 }
 
 .winLogEntry h4 {
   line-height: 0;
+}
+
+.baseHold {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.base {
+  border: 1px solid black;
+  border-radius: 3px;
+  padding: 5px 30px;
+  margin: 10px;
+  -webkit-box-shadow: 10px 10px 31px -28px rgba(0,0,0,0.75);
+  -moz-box-shadow: 10px 10px 31px -28px rgba(0,0,0,0.75);
+  box-shadow: 10px 10px 31px -28px rgba(0,0,0,0.75);
+}
+
+.base.onbase {
+  background-color: rgb(70, 77, 70);
+  color: white;
 }
 
 @media(max-width: 850px){
@@ -93,7 +118,6 @@ button:hover {
   }
   .messages h2 {
     font-size: 3.75em;
-    line-height: 0;
   }
   .interact {
     flex-direction: column;
@@ -120,6 +144,5 @@ button:hover {
   }
   .messages h2 {
     font-size: 2.75em;
-    line-height: 0;
   }
 }
