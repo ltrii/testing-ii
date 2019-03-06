@@ -20,7 +20,11 @@ export default class MainDisplay extends Component {
             awayScore: 0,
             homeScore: 0,
             extraInnings: null,
-            extraInit: false
+            extraInit: false,
+            winLog: [{
+                Away: 0,
+                Home: 1,
+                Innings: 22}]
         }
         this.addBall = this.addBall.bind(this);
         this.addStrike = this.addStrike.bind(this);
@@ -75,28 +79,85 @@ export default class MainDisplay extends Component {
         }
 
         if(this.state.inning >= 10){
+            if(this.state.homeScore !== this.state.awayScore && this.state.extraInit !== true) {
+                if(this.state.homeScore > this.state.awayScore){
+                    var curWinLog = this.state.winLog;
+                    console.log(curWinLog);
+                    var updWinLog = curWinLog.unshift({
+                        Away: this.state.awayScore,
+                        Home: this.state.homeScore,
+                        Innings: this.state.inning
+                    })
+                    this.setState({
+                        winLog: updWinLog,
+                        curMsg: 'Game Over! Home Team Wins!',
+                        inning: 1,
+                        awayScore: 0,
+                        homeScore: 0,
+                        inHalf: 'away',
+                        extraInit: false
+                    })
+                } else if(this.state.homeScore < this.state.awayScore){
+                    var curWinLog = this.state.winLog;
+                    console.log(curWinLog);
+                    var updWinLog = curWinLog.unshift({
+                        Away: this.state.awayScore,
+                        Home: this.state.homeScore,
+                        Innings: this.state.inning
+                    })
+                    this.setState({
+                        winLog: updWinLog,
+                        curMsg: 'Game Over! Away Team Wins!',
+                        inning: 1,
+                        awayScore: 0,
+                        homeScore: 0,
+                        inHalf: 'away',
+                        extraInit: false
+                    })
+                }
+            }
             if(this.state.homeScore === this.state.awayScore && this.state.extraInit === false){
                 this.setState({
                     extraInit: true,
                     extraInnings: true
                 }) } else if (this.state.homeScore !== this.state.awayScore && this.state.extraInit === true && this.state.inHalf === 'home'){
-                    this.setState({
-                        curMsg: 'Game over!',
-                        inning: 1,
-                        awayScore: 0,
-                        homeScore: 0,
-                        extraInit: false
-                    })
+                    if(this.state.homeScore > this.state.awayScore){
+                        var curWinLog = this.state.winLog;
+                        console.log(curWinLog);
+                        var updWinLog = curWinLog.unshift({
+                            Away: this.state.awayScore,
+                            Home: this.state.homeScore,
+                            Innings: this.state.inning
+                        })
+                        this.setState({
+                            winLog: updWinLog,
+                            curMsg: 'Game Over! Home Team Wins!',
+                            inning: 1,
+                            awayScore: 0,
+                            homeScore: 0,
+                            inHalf: 'away',
+                            extraInit: false
+                        })
+                    } else if(this.state.homeScore < this.state.awayScore){
+                        var curWinLog = this.state.winLog;
+                        console.log(curWinLog);
+                        var updWinLog = curWinLog.unshift({
+                            Away: this.state.awayScore,
+                            Home: this.state.homeScore,
+                            Innings: this.state.inning
+                        })
+                        this.setState({
+                            winLog: updWinLog,
+                            curMsg: 'Game Over! Away Team Wins!',
+                            inning: 1,
+                            awayScore: 0,
+                            homeScore: 0,
+                            inHalf: 'away',
+                            extraInit: false
+                        })
+                    }
                 }
             }
-
-
-        // if(this.state.inHalf === 'home' && this.state.extraInnings === false && this.state.inning >= 10){
-        //     this.setState({
-        //         curMsg: 'Game Over!',
-        //         inning: 1
-        //     })
-        // }
     
     }
 
@@ -169,6 +230,7 @@ export default class MainDisplay extends Component {
                 addBall={this.addBall}
                 addFoul={this.addFoul}
                 handleHit={this.handleHit} />
+
         </div>
       </div>
     )
