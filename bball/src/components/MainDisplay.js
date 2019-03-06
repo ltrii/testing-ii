@@ -23,7 +23,7 @@ export default class MainDisplay extends Component {
             b1: 0,
             b2: 0,
             b3: 0,
-            extraInnings: null,
+            extraInnings: 0,
             extraInit: false,
             winLog: [{
                 Away: 0,
@@ -173,21 +173,43 @@ export default class MainDisplay extends Component {
                 this.setState({
                     inHalf: 'home',
                     outs: 0,
+                    ball: 0,
+                    strike: 0,
                     b1: 0,
                     b2: 0,
                     b3: 0,
                     curMsg: 'Home up'
                  })
           } else if (this.state.inHalf === 'home') {
-             this.setState({
-                 inHalf: 'away',
-                 inning: this.state.inning + 1,
-                 outs: 0,
-                 b1: 0,
-                 b2: 0,
-                 b3: 0,
-                 curMsg: 'Away up'
+              if(this.state.extraInit === true && this.state.awayScore > this.state.homeScore) {
+                  this.setState({
+                    winLog: [...this.state.winLog, ({
+                        Away: this.state.awayScore,
+                        Home: this.state.homeScore,
+                        Innings: this.state.inning
+                    })],
+                    curMsg: 'Game Over! Away Team Wins!',
+                    inning: 1,
+                    ball: 0,
+                    strike: 0,
+                    awayScore: 0,
+                    homeScore: 0,
+                    inHalf: 'away',
+                    extraInit: false
                   })
+              } else {
+                    this.setState({
+                        inHalf: 'away',
+                        inning: this.state.inning + 1,
+                        outs: 0,
+                        ball: 0,
+                        strike: 0,
+                        b1: 0,
+                        b2: 0,
+                        b3: 0,
+                        curMsg: 'Away up'
+                        })
+                }
          }
         }
 
@@ -226,8 +248,9 @@ export default class MainDisplay extends Component {
             if(this.state.homeScore === this.state.awayScore && this.state.extraInit === false){
                 this.setState({
                     extraInit: true,
-                    extraInnings: true
-                }) } else if (this.state.homeScore !== this.state.awayScore && this.state.extraInit === true && this.state.inHalf === 'home'){
+                    extraInnings: 1
+                }) 
+            } else if (this.state.homeScore !== this.state.awayScore && this.state.extraInit === true && this.state.inHalf === 'home'){
                     if(this.state.homeScore > this.state.awayScore){
                         this.setState({
                             winLog: [...this.state.winLog, ({
@@ -242,23 +265,9 @@ export default class MainDisplay extends Component {
                             inHalf: 'away',
                             extraInit: false
                         })
-                    } else if(this.state.homeScore < this.state.awayScore){
-                        this.setState({
-                            winLog: [...this.state.winLog, ({
-                                Away: this.state.awayScore,
-                                Home: this.state.homeScore,
-                                Innings: this.state.inning
-                            })],
-                            curMsg: 'Game Over! Away Team Wins!',
-                            inning: 1,
-                            awayScore: 0,
-                            homeScore: 0,
-                            inHalf: 'away',
-                            extraInit: false
-                        })
                     }
-                }
-            }
+            } 
+        }
     
     }
 
