@@ -28,7 +28,7 @@ button:hover {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 500px;
+  height: 600px;
 }
 
 .smallButton {
@@ -44,6 +44,10 @@ button:hover {
 
 .prev {
   font-size: 24px;
-  width: 45%;
+  width: 30%;
   color: lightslategray;
+}
+
+.void {
+  width: 30%;
 }

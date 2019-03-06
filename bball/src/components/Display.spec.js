@@ -35,7 +35,7 @@ describe('Display for Baseball Game', () => {
         const strikes = display.getByTestId('strike');
         expect(strikes).toHaveTextContent("Strikes: 1");
     })
-    test('Foul logic check 2', () => {
+    test('Foul logic with two strikes', () => {
         const button = render(<MainDisplay />).getByTestId("foulbtn");
         const display = render(<MainDisplay />);
         //Simulate 3 fouls

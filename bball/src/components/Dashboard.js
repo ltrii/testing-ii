@@ -1,10 +1,7 @@
 import React, { Component } from 'react'
 
 export default class Dashboard extends Component {
-    constructor(props){
-        super(props);
-    }
-
+  
     addNew(cur){
       if(cur === 'strike'){
         this.props.addStrike();
