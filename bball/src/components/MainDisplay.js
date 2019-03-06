@@ -512,6 +512,9 @@ export default class MainDisplay extends Component {
                     curMsg: `Home Run! ${runsIn} runs!`,
                     strike: 0,
                     ball: 0,
+                    b1: 0,
+                    b2: 0,
+                    b3: 0,
                     awayScore: this.state.awayScore + runsIn
                 })
             }
@@ -755,6 +758,9 @@ export default class MainDisplay extends Component {
                     curMsg: `Home Run! ${runsIn} runs!`,
                     strike: 0,
                     ball: 0,
+                    b1: 0,
+                    b2: 0,
+                    b3: 0,
                     homeScore: this.state.homeScore + runsIn
                 })
             }
