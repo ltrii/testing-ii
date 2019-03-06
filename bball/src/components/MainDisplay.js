@@ -53,13 +53,93 @@ export default class MainDisplay extends Component {
             })
         }
         if(this.state.ball > 3){
-            this.setState({
-            prevMsg: this.state.curMsg,
-            curMsg: 'Walk! (currently out)',
-            strike: 0,
-            ball: 0,
-            outs: this.state.outs + 1
-            })
+            if (this.state.inHalf === 'away'){
+                if(this.state.b1 === 1 && this.state.b2 === 0 && this.state.b3 === 0) {
+                    this.setState({
+                        prevMsg: this.state.curMsg,
+                        curMsg: 'Walk!',
+                        strike: 0,
+                        ball: 0,
+                        b1: 1,
+                        b2: 1,
+                        b3: 0
+                    })
+                } else if(this.state.b1 === 1 && this.state.b2 === 1 && this.state.b3 === 0) {
+                    this.setState({
+                        prevMsg: this.state.curMsg,
+                        curMsg: 'Walk!',
+                        strike: 0,
+                        ball: 0,
+                        b1: 1,
+                        b2: 1,
+                        b3: 1
+                    })
+                } else if(this.state.b1 === 1 && this.state.b2 === 1 && this.state.b3 === 1) {
+                    this.setState({
+                        prevMsg: this.state.curMsg,
+                        curMsg: 'Walk! 1 Run!',
+                        strike: 0,
+                        ball: 0,
+                        b1: 1,
+                        b2: 1,
+                        b3: 1,
+                        awayScore: this.state.awayScore + 1
+                    })
+                } else if(this.state.b1 === 1 && this.state.b2 === 0 && this.state.b3 === 1) {
+                    this.setState({
+                        prevMsg: this.state.curMsg,
+                        curMsg: 'Walk!',
+                        strike: 0,
+                        ball: 0,
+                        b1: 1,
+                        b2: 1,
+                        b3: 1
+                    })
+                }
+            } else if (this.state.inHalf === 'home') {
+                if(this.state.b1 === 1 && this.state.b2 === 0 && this.state.b3 === 0) {
+                    this.setState({
+                        prevMsg: this.state.curMsg,
+                        curMsg: 'Walk!',
+                        strike: 0,
+                        ball: 0,
+                        b1: 1,
+                        b2: 1,
+                        b3: 0
+                    })
+                } else if(this.state.b1 === 1 && this.state.b2 === 1 && this.state.b3 === 0) {
+                    this.setState({
+                        prevMsg: this.state.curMsg,
+                        curMsg: 'Walk!',
+                        strike: 0,
+                        ball: 0,
+                        b1: 1,
+                        b2: 1,
+                        b3: 1
+                    })
+                } else if(this.state.b1 === 1 && this.state.b2 === 1 && this.state.b3 === 1) {
+                    this.setState({
+                        prevMsg: this.state.curMsg,
+                        curMsg: 'Walk! 1 Run!',
+                        strike: 0,
+                        ball: 0,
+                        b1: 1,
+                        b2: 1,
+                        b3: 1,
+                        homeScore: this.state.homeScore + 1
+                    })
+                } else if(this.state.b1 === 1 && this.state.b2 === 0 && this.state.b3 === 1) {
+                    this.setState({
+                        prevMsg: this.state.curMsg,
+                        curMsg: 'Walk!',
+                        strike: 0,
+                        ball: 0,
+                        b1: 1,
+                        b2: 1,
+                        b3: 1
+                    })
+                }
+            }
         }
         if(this.state.foul){
             this.setState({
