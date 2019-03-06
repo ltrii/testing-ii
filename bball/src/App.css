@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css?family=Rubik');
+
 body {
-  width: 80%;
+  width: 85%;
   margin: auto;
   font-family: 'Rubik', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
@@ -81,16 +83,16 @@ button:hover {
   line-height: 0;
 }
 
-@media(max-width: 600px){
+@media(max-width: 850px){
   body {
-    width: 100%;
+    width: 90%;
   }
   h1 {
-    font-size: 3.15em;
-    line-height: 5px;
+    font-size: 4.35em;
+    line-height: 7px;
   }
   .messages h2 {
-    font-size: 2.75em;
+    font-size: 3.75em;
     line-height: 0;
   }
   .interact {
@@ -105,5 +107,19 @@ button:hover {
     width: 90%;
     margin: 5px auto;
     padding: 5px;
+  }
+}
+
+@media(max-width: 600px){
+  body {
+    width: 97.5%;
+  }
+  h1 {
+    font-size: 3.15em;
+    line-height: 5px;
+  }
+  .messages h2 {
+    font-size: 2.75em;
+    line-height: 0;
   }
 }
