@@ -12,6 +12,7 @@ export default class Display extends Component {
             </h2>
           </div>
           <div>
+            <h3>Currently up: {this.props.inHalf}</h3>
             <h3>Away: {this.props.awayScore}</h3>
             <h3>Home: {this.props.homeScore}</h3>
             <h4>Inning: {this.props.inning}</h4>

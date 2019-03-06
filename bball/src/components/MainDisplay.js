@@ -18,7 +18,9 @@ export default class MainDisplay extends Component {
             curMsg: 'Click to begin',
             prevMsg: '',
             awayScore: 0,
-            homeScore: 0
+            homeScore: 0,
+            extraInnings: null,
+            extraInit: false
         }
         this.addBall = this.addBall.bind(this);
         this.addStrike = this.addStrike.bind(this);
@@ -71,12 +73,29 @@ export default class MainDisplay extends Component {
                   })
          }
         }
-        if(this.state.inning > 9){
-            this.setState({
-                curMsg: 'Game over!',
-                inning: 1
-            })
-        }
+
+        if(this.state.inning >= 10){
+            if(this.state.homeScore === this.state.awayScore && this.state.extraInit === false){
+                this.setState({
+                    extraInit: true,
+                    extraInnings: true
+                }) } else if (this.state.homeScore !== this.state.awayScore && this.state.inHalf === 'home'){
+                    this.setState({
+                        curMsg: 'Game over!',
+                        inning: 1,
+                        extraInnings: null
+                    })
+                }
+            }
+
+
+        // if(this.state.inHalf === 'home' && this.state.extraInnings === false && this.state.inning >= 10){
+        //     this.setState({
+        //         curMsg: 'Game Over!',
+        //         inning: 1
+        //     })
+        // }
+    
     }
 
     addStrike() {
@@ -141,7 +160,8 @@ export default class MainDisplay extends Component {
                      homeScore={this.state.homeScore}
                      awayScore={this.state.awayScore}
                      inning={this.state.inning}
-                     outs={this.state.outs} />
+                     outs={this.state.outs}
+                     inHalf={this.state.inHalf} />
             <Dashboard 
                 addStrike={this.addStrike}
                 addBall={this.addBall}
