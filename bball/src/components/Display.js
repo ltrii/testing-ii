@@ -6,7 +6,9 @@ export default class Display extends Component {
     return (
       <div className="gameDisplay">
           <div className="messages">
-          <h2 className="prev">{this.props.prevMsg}</h2>
+          <div className="prev">
+            {this.props.prevMsg}
+          </div>
             <h2>
                 {this.props.curMsg}
             </h2>

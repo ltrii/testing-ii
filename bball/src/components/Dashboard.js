@@ -37,7 +37,7 @@ export default class Dashboard extends Component {
   }
   render() {
     return (
-      <div>
+      <div className="interact">
         <button onClick={(e => this.handleClick(e))}>Take a swing!</button>
         <button data-testid="strikebtn" className="smallButton" onClick={(e => this.addNew('strike'))}>Add strike</button>
         <button data-testid="ballbtn" className="smallButton" onClick={(e => this.addNew('ball'))}>Add ball</button>

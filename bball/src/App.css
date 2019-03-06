@@ -5,7 +5,7 @@ body {
 }
 
 h1 {
-  font-size: 4em;
+  font-size: 5.15em;
   line-height: 10px;
 }
 
@@ -28,28 +28,36 @@ button:hover {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 600px;
+}
+
+.interact {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .smallButton {
-  font-size: .95em;
+  font-size: .9em;
   margin: 10px;
 }
 
 .messages {
-  font-size: 3em;
-  display: flex;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.messages h2 {
+  color: rgb(23, 0, 128);
+  font-size: 4.75em;
+  line-height: 0;
 }
 
 .prev {
-  font-size: 24px;
-  width: 30%;
+  font-size: 20px;
   color: lightslategray;
-}
-
-.void {
-  width: 30%;
 }
 
 .winLogHold {
