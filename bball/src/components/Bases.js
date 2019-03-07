@@ -44,9 +44,13 @@ export default class Bases extends Component {
   render() {
     return (
     <div className="baseHold">
-        {this.renderb1()}
-        {this.renderb2()}
-        {this.renderb3()}
+        <div className="base2">
+            {this.renderb2()}
+        </div>
+        <div className="sidebases">
+            {this.renderb3()}
+            {this.renderb1()}
+        </div>
       </div>
     )
   }

@@ -3,7 +3,7 @@ import React from 'react'
 export default function WinLog(props) {
   return (
     <div>
-        <h1>Win Logs</h1>
+        <h1>Game Logs</h1>
     <div className="winLogHold">
       {props.winLog.map(game => (
           <div className="winLogEntry">

@@ -49,10 +49,12 @@ export default class Dashboard extends Component {
     return (
       <div className="interact">
         <button onClick={(e => this.handleClick(e))}>Take a swing!</button>
-        <button data-testid="strikebtn" className="smallButton" onClick={(e => this.addNew('strike'))}>Add strike</button>
-        <button data-testid="ballbtn" className="smallButton" onClick={(e => this.addNew('ball'))}>Add ball</button>
-        <button data-testid="foulbtn" className="smallButton" onClick={(e => this.addNew('foul'))}>Add foul</button>
-        <button data-testid="hitbtn" className="smallButton" onClick={(e => this.addNew('hit'))}>Hit a homer</button>
+        <div className="cheatButtons">
+          <button data-testid="strikebtn" className="smallButton" onClick={(e => this.addNew('strike'))}>Add strike</button>
+          <button data-testid="ballbtn" className="smallButton" onClick={(e => this.addNew('ball'))}>Add ball</button>
+          <button data-testid="foulbtn" className="smallButton" onClick={(e => this.addNew('foul'))}>Add foul</button>
+          <button data-testid="hitbtn" className="smallButton" onClick={(e => this.addNew('hit'))}>Hit a homer</button>
+        </div>
       </div>
     )
   }

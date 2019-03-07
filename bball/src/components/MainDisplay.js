@@ -26,10 +26,7 @@ export default class MainDisplay extends Component {
             b3: 0,
             extraInnings: 0,
             extraInit: false,
-            winLog: [{
-                Away: 0,
-                Home: 1,
-                Innings: 22}]
+            winLog: []
         }
         this.addBall = this.addBall.bind(this);
         this.addStrike = this.addStrike.bind(this);
@@ -38,7 +35,23 @@ export default class MainDisplay extends Component {
         this.addOut = this.addOut.bind(this);
     }
 
-    componentDidUpdate(){
+    componentDidMount(){
+        const logs = JSON.parse(localStorage.getItem('gamelogs'));
+        if(logs){
+            console.log(logs)
+            this.setState({
+                winLog: logs
+            })
+        } else {
+            console.log('No Winlog Found')
+        }
+    }
+
+    componentDidUpdate(prevProps, prevState){
+        if(prevState.winLog.length !== this.state.winLog.length){
+            const jsond = JSON.stringify(this.state.winLog);
+            localStorage.setItem('gamelogs', jsond);
+        }
         if(this.state.strike >= 3){
             this.setState({
                 out: true
@@ -202,7 +215,7 @@ export default class MainDisplay extends Component {
                     homeScore: 0,
                     inHalf: 'away',
                     extraInit: false
-                  })
+                  });
               } else {
                     this.setState({
                         inHalf: 'away',
@@ -874,28 +887,31 @@ export default class MainDisplay extends Component {
       <div>
         <h1>Baseball</h1>
         <div className="gameHold">
-            <Display curMsg={this.state.curMsg}
-                     ball={this.state.ball}
-                     strike={this.state.strike}
-                     prevMsg={this.state.prevMsg} 
-                     homeScore={this.state.homeScore}
-                     awayScore={this.state.awayScore}
-                     inning={this.state.inning}
-                     outs={this.state.outs}
-                     inHalf={this.state.inHalf} />
-                <Bases b1={this.state.b1}
-                   b2={this.state.b2}
-                   b3={this.state.b3} />
-            <Dashboard 
-                addStrike={this.addStrike}
-                addBall={this.addBall}
-                addFoul={this.addFoul}
-                handleHit={this.handleHit}
-                addOut={this.addOut} />
-
-            <WinLog winLog={this.state.winLog} />
+            <div className="rightContent">
+                <Display curMsg={this.state.curMsg}
+                         ball={this.state.ball}
+                         strike={this.state.strike}
+                         prevMsg={this.state.prevMsg} 
+                         homeScore={this.state.homeScore}
+                         awayScore={this.state.awayScore}
+                         inning={this.state.inning}
+                         outs={this.state.outs}
+                         inHalf={this.state.inHalf} />
+            </div>
+                <div className="leftContent">
+                    <Bases b1={this.state.b1}
+                       b2={this.state.b2}
+                       b3={this.state.b3} />
+                    <Dashboard 
+                        addStrike={this.addStrike}
+                        addBall={this.addBall}
+                        addFoul={this.addFoul}
+                        handleHit={this.handleHit}
+                        addOut={this.addOut} />
+                </div>
 
         </div>
+        <WinLog winLog={this.state.winLog} />
       </div>
     )
   }

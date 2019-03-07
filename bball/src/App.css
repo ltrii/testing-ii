@@ -8,7 +8,6 @@ body {
 
 h1 {
   font-size: 5.15em;
-  line-height: 10px;
 }
 
 button {
@@ -25,6 +24,16 @@ button:hover {
   color: white;
 }
 
+.rightContent {
+  width: 75%;
+}
+
+.gameHold {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+}
+
 .gameDisplay {
   display: flex;
   flex-direction: column;
@@ -34,13 +43,15 @@ button:hover {
 
 .interact {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
 .smallButton {
-  font-size: .9em;
+  font-size: .75em;
   margin: 10px;
+  color: grey
 }
 
 .messages {
@@ -52,15 +63,18 @@ button:hover {
 }
 
 .messages h2 {
+  display: flex;
+  text-align: center;
   color: rgb(23, 0, 128);
-  font-size: 4.75em;
-  height: 75px;
+  line-height: normal;
+  font-size: 4em;
+  font-weight: bold;
 }
 
 .prev {
-  font-size: 20px;
+  font-size: 15px;
   color: lightslategray;
-  height: 35px;
+  height: 18px;
 }
 
 .winLogHold {
@@ -89,14 +103,20 @@ button:hover {
 
 .baseHold {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
+}
+
+.sidebases {
+  display: flex;
+  justify-content: space-evenly;
 }
 
 .base {
   border: 1px solid black;
   border-radius: 3px;
-  padding: 5px 30px;
+  padding: 8px 30px;
   margin: 10px;
   -webkit-box-shadow: 10px 10px 31px -28px rgba(0,0,0,0.75);
   -moz-box-shadow: 10px 10px 31px -28px rgba(0,0,0,0.75);
@@ -106,6 +126,15 @@ button:hover {
 .base.onbase {
   background-color: rgb(70, 77, 70);
   color: white;
+  -webkit-box-shadow: 10px 10px 31px -28px rgba(0,0,0,0.75);
+  -moz-box-shadow: 10px 10px 31px -28px rgba(0,0,0,0.75);
+  box-shadow: 10px 10px 31px -28px rgba(0,0,0,0.75);
+}
+
+.cheatButtons {
+  display: flex;
+  flex-direction: column;
+  margin-top: 30px;
 }
 
 @media(max-width: 850px){
@@ -131,6 +160,10 @@ button:hover {
     width: 90%;
     margin: 5px auto;
     padding: 5px;
+  }
+  .gameHold {
+    flex-direction: column;
+    align-items: center;
   }
 }
 
