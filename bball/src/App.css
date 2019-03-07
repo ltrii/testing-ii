@@ -1,0 +1,181 @@
+@import url('https://fonts.googleapis.com/css?family=Rubik');
+
+body {
+  width: 85%;
+  margin: auto;
+  font-family: 'Rubik', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+h1 {
+  font-size: 5.15em;
+}
+
+button {
+  padding: 10px;
+  font-family: 'Rubik';
+  font-size: 1.5em;
+  background-color: rgb(226, 226, 226);
+  border: none;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: darkred;
+  color: white;
+}
+
+.rightContent {
+  width: 75%;
+}
+
+.gameHold {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+}
+
+.gameDisplay {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.interact {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.smallButton {
+  font-size: .75em;
+  margin: 10px;
+  color: grey
+}
+
+.messages {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.messages h2 {
+  display: flex;
+  text-align: center;
+  color: rgb(23, 0, 128);
+  line-height: normal;
+  font-size: 4em;
+  font-weight: bold;
+}
+
+.prev {
+  font-size: 15px;
+  color: lightslategray;
+  height: 18px;
+}
+
+.winLogHold {
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.winLogEntry {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 20%;
+  border: 1px solid black;
+  border-radius: 4px;
+  margin: 10px;
+  padding: 10px;
+  -webkit-box-shadow: 10px 10px 31px -28px rgba(0,0,0,0.75);
+  -moz-box-shadow: 10px 10px 31px -28px rgba(0,0,0,0.75);
+  box-shadow: 10px 10px 31px -28px rgba(0,0,0,0.75);
+}
+
+.winLogEntry h4 {
+  line-height: 0;
+}
+
+.baseHold {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sidebases {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.base {
+  border: 1px solid black;
+  border-radius: 3px;
+  padding: 8px 30px;
+  margin: 10px;
+  -webkit-box-shadow: 10px 10px 31px -28px rgba(0,0,0,0.75);
+  -moz-box-shadow: 10px 10px 31px -28px rgba(0,0,0,0.75);
+  box-shadow: 10px 10px 31px -28px rgba(0,0,0,0.75);
+}
+
+.base.onbase {
+  background-color: rgb(70, 77, 70);
+  color: white;
+  -webkit-box-shadow: 10px 10px 31px -28px rgba(0,0,0,0.75);
+  -moz-box-shadow: 10px 10px 31px -28px rgba(0,0,0,0.75);
+  box-shadow: 10px 10px 31px -28px rgba(0,0,0,0.75);
+}
+
+.cheatButtons {
+  display: flex;
+  flex-direction: column;
+  margin-top: 30px;
+}
+
+@media(max-width: 850px){
+  body {
+    width: 90%;
+  }
+  h1 {
+    font-size: 4.35em;
+    line-height: 7px;
+  }
+  .messages h2 {
+    font-size: 3.75em;
+  }
+  .interact {
+    flex-direction: column;
+  }
+  .winLogHold {
+    width: 100%;
+    flex-direction: column;
+  }
+  
+  .winLogEntry {
+    width: 90%;
+    margin: 5px auto;
+    padding: 5px;
+  }
+  .gameHold {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media(max-width: 600px){
+  body {
+    width: 97.5%;
+  }
+  h1 {
+    font-size: 3.15em;
+    line-height: 5px;
+  }
+  .messages h2 {
+    font-size: 2.75em;
+  }
+}
