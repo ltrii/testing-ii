@@ -26,8 +26,11 @@ export default class Dashboard extends Component {
       else if(diceRoll <= 45){
           this.props.addFoul();
       }
-      else if(diceRoll <= 750){
+      else if(diceRoll <= 650){
           this.props.addStrike();
+      }
+      else if(diceRoll <= 700){
+          this.props.addOut();
       }
       else if(diceRoll <= 910){
           this.props.addBall();

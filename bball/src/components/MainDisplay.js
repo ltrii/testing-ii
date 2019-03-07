@@ -35,6 +35,7 @@ export default class MainDisplay extends Component {
         this.addStrike = this.addStrike.bind(this);
         this.addFoul = this.addFoul.bind(this);
         this.handleHit = this.handleHit.bind(this);
+        this.addOut = this.addOut.bind(this);
     }
 
     componentDidUpdate(){
@@ -218,6 +219,28 @@ export default class MainDisplay extends Component {
          }
         }
 
+        if(this.state.inning === 9 && this.state.inHalf === 'home' && this.state.homeScore > this.state.awayScore) {
+            this.setState({
+                winLog: [...this.state.winLog, ({
+                    Away: this.state.awayScore,
+                    Home: this.state.homeScore,
+                    Innings: this.state.inning
+                })],
+                curMsg: 'Game Over! Home Team Wins!',
+                inning: 1,
+                b1: 0,
+                b2: 0,
+                b3: 0,
+                outs: 0,
+                ball: 0,
+                strike: 0,
+                awayScore: 0,
+                homeScore: 0,
+                inHalf: 'away',
+                extraInit: false
+              })
+        }
+
         if(this.state.inning >= 10){
             if(this.state.homeScore !== this.state.awayScore && this.state.extraInit !== true) {
                 if(this.state.homeScore > this.state.awayScore){
@@ -301,6 +324,16 @@ export default class MainDisplay extends Component {
             prevMsg: this.state.curMsg,
             curMsg: 'Ball',
             ball: this.state.ball + 1
+        })
+    }
+
+    addOut() {
+        this.setState({
+            prevMsg: this.state.curMsg,
+            curMsg: 'Ball Caught! Out!',
+            ball: 0,
+            strike: 0,
+            outs: this.state.outs + 1
         })
     }
 
@@ -857,7 +890,8 @@ export default class MainDisplay extends Component {
                 addStrike={this.addStrike}
                 addBall={this.addBall}
                 addFoul={this.addFoul}
-                handleHit={this.handleHit} />
+                handleHit={this.handleHit}
+                addOut={this.addOut} />
 
             <WinLog winLog={this.state.winLog} />
 
